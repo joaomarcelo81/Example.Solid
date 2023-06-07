@@ -29,7 +29,8 @@ The Single Responsibility Principle states that a class should have only one rea
 
 Example:
 
-###Solution
+<details>
+<summary><b>Solution</b></summary>
 
 The code below represents a simplified example of a `Customer` class, along with a `CustomerRepository`, `CustomerService`, `EmailServices`, and `IdentificationServices` classes. Let's analyze it in terms of the Single Responsibility Principle (SRP).
 
@@ -133,9 +134,10 @@ public static class IdentificationServices
 ```
 
 The `IdentificationServices` class provides identification-related functionalities. It has a single method, IsValid, which validates an identification number. It adheres to the SRP by having a single responsibility of handling identification-related operations.
+</details>
 
-
-###Violation
+<details>
+  <summary><b>Violation</b></summary>
 
 The code below violates the Single Responsibility Principle (SRP) because the `Customer` class is responsible for multiple tasks that go beyond its primary responsibility of encapsulating customer data. Let's analyze the code to identify the violations
 
@@ -202,15 +204,15 @@ public class Customer
 
 By combining all these responsibilities into the `Customer` class, it violates the SRP because the class has multiple reasons to change. If there are changes to the validation logic, database operations, or email sending, the `Customer` class will need to be modified, which breaks the principle of having a single responsibility.
 
-
+/<details>
 
 ## O - Open/Closed Principle (OCP)
 
 The Open/Closed Principle states that software entities (classes, modules, functions) should be open for extension but closed for modification. It means that you should be able to add new functionality without changing the existing code.
 
 Example:
-
-###Solution
+<details>
+<summary><b>Solution</b></summary>
 
 The code below demonstrates an implementation of the Open-Closed Principle (OCP) to some extent. Let's analyze it in the context of the OCP:
 
@@ -274,10 +276,10 @@ The code includes three concrete classes derived from the `DebitAccount` base cl
 The Open-Closed Principle suggests that classes should be open for extension but closed for modification. In this case, the `DebitAccount` class is closed for modification because it is an abstract class that defines a common interface. New types of debit accounts can be introduced by extending this class without modifying the existing code.
 
 The derived classes, such as `DebitAccountAccount`, `DebitAccountInvestment`, and `DebitSavingsAccount`, represent different types of debit accounts and are open for extension. If you need to introduce a new type of debit account, you can create a new derived class that inherits from `DebitAccount` and implements the `Withdraw` method specific to that account type.
+</details>
 
-
-
-###Violation
+<details>
+  <summary><b>Violation</b></summary>
 
 The code below violates the Open-Closed Principle (OCP) because it does not follow the guideline of being open for extension but closed for modification. Let's analyze the code to identify the violations:
 
@@ -313,15 +315,15 @@ The violations of the Open-Closed Principle are as follows:
 1.**Modification required for adding new account types**: If a new account type, such as a `CreditAccount`, needs to be added, the `Debit` method would have to be modified to include a new conditional statement. This violates the principle as it requires modifying the existing code instead of simply extending it.
 
 2.**Lack of abstraction**: The code does not utilize inheritance or abstraction to provide a common interface for different account types. Instead, it uses conditional statements to handle different account types within a single method. This makes the code less flexible and harder to extend.
-
+</details>
 
 ## L - Liskov Substitution Principle (LSP)
 
 The Liskov Substitution Principle states that subtypes must be substitutable for their base types. It means that objects of a superclass should be replaceable with objects of its subclasses without affecting the correctness of the program.
 
 Example:
-
-###Solution
+<details>
+<summary><b>Solution</b></summary>
 
 The code below demonstrates the Liskov Substitution Principle (LSP) to some extent. Let's analyze it in the context of the LSP:
 
@@ -371,7 +373,9 @@ There are two concrete classes derived from `Parallelogram`:
 
 The Liskov Substitution Principle states that objects of a superclass should be replaceable with objects of its subclasses without affecting the correctness of the program. In this case, both `Rectangle` and `Square` can be used interchangeably as `Parallelogram` objects, allowing for polymorphic behavior without introducing errors.
 
-###Violation
+</details>
+<details>
+  <summary><b>Violation</b></summary>
 
 The code below violates the Liskov Substitution Principle (LSP). Let's analyze the code to identify the violation:
 
@@ -427,7 +431,7 @@ In this specific example, the violation occurs because the `Square` class overri
 By passing a `Square` object to a method that expects a `Rectangle`, the method may produce incorrect results or behave unexpectedly because the assumptions made about the properties of `Rectangle` objects are not valid for `Square` objects.
 
 To resolve this violation, the design should either ensure that the `Square` class does not inherit from `Rectangle` or modify the `GetArea`Rectangle`` method and other code that relies on the `Rectangle` class to handle the behavior of `Square`s separately. By doing so, the program can correctly handle both `Rectangle`s and `Square`s without violating the Liskov Substitution Principle.
-
+</details>
 
 
 ## I - Interface Segregation Principle (ISP)
@@ -436,7 +440,8 @@ The Interface Segregation Principle states that clients should not be forced to 
 
 Example:
 
-###Solution
+<details>
+<summary><b>Solution</b></summary>
 
 The code below demonstrates the Interface Segregation Principle (ISP). Let's analyze it in the context of the ISP:
 ```csharp
@@ -499,7 +504,9 @@ This approach allows clients to depend only on the relevant interfaces and imple
 
 In summary, the code follows the Interface Segregation Principle by dividing the interfaces into smaller, more cohesive units, enabling clients to implement and use only the methods they require.
 
-###Violation
+</details>
+<details>
+  <summary><b>Violation</b></summary>
 
 The code below violates the Interface Segregation Principle (ISP). Let's analyze it to understand the violation:
 
@@ -554,7 +561,7 @@ The violation of the Interface Segregation Principle occurs in the `ProductRegis
 By forcing the `ProductRegistration` class to implement the ``SendEmail`` method, the code violates the ISP because the class is forced to depend on a method that is not applicable or meaningful in its context. This violates the principle of segregating interfaces into smaller and more focused units that clients can implement based on their specific needs.
 
 To resolve this violation, you should split the `IRegistration` interface into smaller, more cohesive interfaces based on the specific responsibilities and requirements of each domain. For example, you could have an `ICustomerRegistration` interface that includes the `ValidateData`, `SaveBank`, and ``SendEmail`` methods, and a separate interface for product-related operations.
-
+</details>
 
 ## D - Dependency Inversion Principle (DIP)
 
@@ -562,7 +569,8 @@ The Dependency Inversion Principle states that high-level modules should not dep
 
 Example:
 
-###Solution
+<details>
+<summary><b>Solution</b></summary>
 
 The code below demonstrates the Dependency Inversion Principle (DIP) by applying dependency injection and relying on abstractions rather than concrete implementations. Let's analyze it to understand the principle:
 
@@ -700,7 +708,9 @@ The `CustomerRepository` class implements the `ICustomerRepository` interface, p
 
 The `EmailServices` and `IdentificationServices` classes implement the `IEmailServices` and IIdentificationServices interfaces, respectively, providing concrete implementations for email-related operations and identification validation. The `Customer` class depends on these interfaces, enabling it to use the provided functionalities without being tightly coupled to specific implementations.
 
-###Violation
+</details>
+<details>
+  <summary><b>Violation</b></summary>
 
 
 ```csharp
@@ -802,6 +812,9 @@ To adhere to the Dependency Inversion Principle, the code should be refactored t
 2.Modify the `CustomerServices` class to accept the ICustomerRepository interface and IEmailServices interface as constructor parameters. This enables dependency injection and decouples the `CustomerServices` class from specific implementations.
 
 3.Implement the `CustomerRepository` class to satisfy the ICustomerRepository interface. This allows for easy substitution of repository implementations without affecting the `CustomerServices` class.
+
+</details>
+
 
 ## Conclusion
 
