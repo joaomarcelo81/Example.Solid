@@ -204,7 +204,7 @@ public class Customer
 
 By combining all these responsibilities into the `Customer` class, it violates the SRP because the class has multiple reasons to change. If there are changes to the validation logic, database operations, or email sending, the `Customer` class will need to be modified, which breaks the principle of having a single responsibility.
 
-/<details>
+</details>
 
 ## O - Open/Closed Principle (OCP)
 
